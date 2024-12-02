@@ -17,5 +17,34 @@ export default class HashMap {
 
         return Math.abs(hashCode); // ensures positive int.
     }
+
+    set(key, value) {
+        const index = this.hash(key); // sets the hash of the key param to const index. using 'this' ensures we stay within the context of this HashMap instance.
+        if (!this.hashMap[index]) { // access hashmap index by [] notation.
+            this.hashMap[index] = []; // create new bucket in the form of an array (chaining). 
+        }
+
+        //check if key exists in bucket
+        for (let pair of this.hashMap[index]) {
+            if (pair[0] === key) {
+                pair[1] = value; // set the value to the passed in value. (update the value).
+                return;
+            }
+        }
+
+        this.hashMap[index].push([key, value]); // add the key value as an array at the created index if it doesn't exist in hashmap yet.  
+        this.size++; // increment size of hashmap.
+
+        //check load factor and resize if necessary.
+
+        if (this.size / this.capacity > this.loadFactor) {
+            this.resize();
+        }
+
+    }
+
+    resize() {
+        
+    }
 }
 
