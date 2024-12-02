@@ -98,6 +98,19 @@ export default class HashMap {
     remove(key) {
         const index = this.hash(key);
         const bucket = this.hashMap[index];
+
+        if (!bucket) return false;
+
+        for (let i = 0; i < bucket.length; i++) { // iterate over the bucket.
+            const [storedKey] = bucket[i]; // destructure pair
+            if (storedKey === key) {
+                bucket.splice(i, 1); // remove at i.
+                this.size--;
+                return true;
+            }
+        }
+
+        return false; // add error.
     }
 }
 
