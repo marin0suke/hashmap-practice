@@ -112,5 +112,20 @@ export default class HashMap {
 
         return false; // add error.
     }
+
+    length() {
+        //return the number of stored keys in the hashmap.
+        let totalKeys = 0;
+        
+        for (let bucket of this.hashMap) { // iterate over each bucket.
+            if (bucket) {
+                totalKeys += bucket.length; // adds number of pairs in bucket to count.
+            }
+        }
+
+        return totalKeys;
+    }
+
+    
 }
 
