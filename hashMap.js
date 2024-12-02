@@ -126,6 +126,15 @@ export default class HashMap {
         return totalKeys;
     }
 
-    
+    clear() {
+        for (let bucket of this.hashMap) {
+            if (bucket) {
+                bucket.length = 0; // this or splice(0, bucket.length); ?
+            }
+        }
+
+        this.size = 0;
+        return true;
+    }
 }
 
