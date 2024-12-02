@@ -136,5 +136,21 @@ export default class HashMap {
         this.size = 0;
         return true;
     }
+
+    keys() {
+        let keys = []; // to return.
+
+        for (let bucket of this.hashMap) {
+            if (bucket) {
+                for (let [storedKey] of bucket) {
+                    keys.push(storedKey);
+                }
+            }
+        } 
+
+        return keys;
+    }
+
+    
 }
 
