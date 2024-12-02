@@ -77,5 +77,22 @@ export default class HashMap {
          
         return null;
     }
+
+    has(key) {
+        const index = this.hashMap(key);
+        const bucket = this.hashMap[index];
+
+        if (!bucket) {
+            return false; 
+        }
+
+        for (let [storedKey, storedValue] of bucket) {
+            if (storedKey === key) {
+                return true;
+            }
+        }
+         
+        return false;
+    }
 }
 
