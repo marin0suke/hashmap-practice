@@ -20,6 +20,7 @@ export default class HashMap {
 
     set(key, value) {
         const index = this.hash(key); // sets the hash of the key param to const index. using 'this' ensures we stay within the context of this HashMap instance.
+
         if (!this.hashMap[index]) { // access hashmap index by [] notation.
             this.hashMap[index] = []; // create new bucket in the form of an array (chaining). 
         }
@@ -58,6 +59,23 @@ export default class HashMap {
             }
         }
 
+    }
+
+    get(key) {
+        const index = this.hashMap(key);
+        const bucket = this.hashMap[index]; // look up bucket.
+
+        if (!bucket) {
+            return null; // if no bucket at index, no value to retrieve.
+        }
+
+        for (let [storedKey, storedValue] of bucket) {
+            if (storedKey === key) {
+                return storedValue; // use for of to search by key and retrieve value.
+            }
+        }
+         
+        return null;
     }
 }
 
