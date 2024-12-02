@@ -151,6 +151,35 @@ export default class HashMap {
         return keys;
     }
 
+    values() {
+        let values = []; // to return.
+
+        for (let bucket of this.hashMap) {
+            if (bucket) {
+                for (let [_, storedValue] of bucket) { // _ used for ignored variables. could also leave in for readability.
+                    values.push(storedValue);
+                }
+            }
+        } 
+
+        return values;
+    }
+
+    entries() {
+        let entries = []; // to return.
+
+        for (let bucket of this.hashMap) {
+            if (bucket) {
+                for (let [storedKey, storedValue] of bucket) { // _ used for ignored variables. could also leave in for readability.
+                    entries.push([storedKey, storedValue]);
+                }
+            }
+        } 
+
+        return entries;
+    }
+
     
+
 }
 
