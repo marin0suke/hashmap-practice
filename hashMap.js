@@ -44,7 +44,20 @@ export default class HashMap {
     }
 
     resize() {
-        
+        const oldMap = this.hashMap; // save the current map.
+        this.capacity *= 2; // double the size.
+        this.hashMap = new Array(this.capacity).fill(null); // new array with new capacity.
+        this.size = 0; // resets size, will be filled when rehashing.
+
+        // re-add/rehash all existing key value pairs.
+        for (let bucket of oldMap) {
+            if (bucket) {
+                for (let [key, value] of bucket) {
+                    this.set(key, value); // reinserts into new map.
+                }
+            }
+        }
+
     }
 }
 
