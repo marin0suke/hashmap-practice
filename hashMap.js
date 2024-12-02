@@ -62,7 +62,7 @@ export default class HashMap {
     }
 
     get(key) {
-        const index = this.hashMap(key);
+        const index = this.hash(key);
         const bucket = this.hashMap[index]; // look up bucket.
 
         if (!bucket) {
@@ -79,7 +79,7 @@ export default class HashMap {
     }
 
     has(key) {
-        const index = this.hashMap(key);
+        const index = this.hash(key);
         const bucket = this.hashMap[index];
 
         if (!bucket) {
@@ -93,6 +93,11 @@ export default class HashMap {
         }
          
         return false;
+    }
+
+    remove(key) {
+        const index = this.hash(key);
+        const bucket = this.hashMap[index];
     }
 }
 
